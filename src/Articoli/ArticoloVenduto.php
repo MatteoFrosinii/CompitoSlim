@@ -11,4 +11,8 @@ class ArticoloVenduto {
         $this->$quantitaAcquistata = $quantitaAcquistata;
     }
     
+    public function getPrezzoDiVendita()
+    {
+        return $this->prezzoDiVendita;
+    }
 }

@@ -6,7 +6,7 @@ use Slim\Factory\AppFactory;
 require __DIR__ . '/vendor/autoload.php';
 
 function autoloader($class_name){
-    
+
     $dirs = [
         '/',
         '/controllers',
@@ -30,5 +30,15 @@ function autoloader($class_name){
 $app = AppFactory::create();
 
 $app->get('/negozio','ControllerNegozio:getAsJson');
+
+$app->get('/articoli','ControllerArticoli:getAsJson');
+$app->get('/articoli/{id}','ControllerArticoloPerId:getAsJson');
+
+$app->get('/ordini','ControllerOrdini:getAsJson');
+$app->get('/ordini/{id}','ControllerOrdiniPerId:getAsJson');
+//$app->get('/articoli/{id}','ControllerArticoloPerId:getAsJson');
+//$app->get('/articoli/{id}','ControllerArticoloPerId:getAsJson');
+
+srand(275);
 
 $app->run();

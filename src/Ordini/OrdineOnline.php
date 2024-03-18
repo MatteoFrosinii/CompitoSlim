@@ -1,6 +1,6 @@
 <?php
 
-class OrdineDiOnline extends Ordine{
+class OrdineOnline extends Ordine{
     public $indirizzoIP;
     public $codiceDiAutorizzazione;
 
