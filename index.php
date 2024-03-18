@@ -1,15 +1,34 @@
 <?php
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Slim\Factory\AppFactory;
+use Slim\Factory\AppFactory;    
 
 require __DIR__ . '/vendor/autoload.php';
 
+function autoloader($class_name){
+    
+    $dirs = [
+        '/',
+        '/controllers',
+        '/src',
+        '/src/Articoli',
+        '/src/Ordini',
+        '/model',
+        '/model/Articoli',
+        '/model/Ordini'
+    ];
+
+    foreach ($dirs as $dir) {
+        $file = __DIR__ . $dir . '/' . $class_name . '.php';
+        if (file_exists($file)) {
+            require $file;
+            return;
+        }
+    }
+}   spl_autoload_register('autoloader');
+
 $app = AppFactory::create();
 
-$app->get('/', function (Request $request, Response $response, $args) {
-    $response->getBody()->write("Hello world!");
-    return $response;
-});
+$app->get('/negozio','ControllerNegozio:getAsJson');
 
 $app->run();
